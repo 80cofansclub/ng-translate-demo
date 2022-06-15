@@ -9,10 +9,10 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   title = 'demo2';
   param = { value: 'world' };
-  currLang = 'en';
+  currLang = 'tw';
   constructor(private translate: TranslateService) {
-    translate.setDefaultLang('en');
-    translate.use('en');
+    translate.setDefaultLang('tw');
+    translate.use('tw');
   }
 
   test() {
