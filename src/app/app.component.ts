@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'demo2';
@@ -17,5 +17,7 @@ export class AppComponent {
 
   test() {
     this.translate.use(this.currLang);
+
+    console.log(this.translate.instant('HOME.WELCOME', { name: 'Allen' }));
   }
 }
