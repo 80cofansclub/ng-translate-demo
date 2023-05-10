@@ -10,12 +10,20 @@ export class AppComponent {
   title = 'demo2';
   param = { value: 'world' };
   currLang = 'tw';
+
+  multiply = (x) => {
+    return (y) => {
+      return x * y;
+    };
+  };
+
   constructor(private translate: TranslateService) {
     translate.setDefaultLang('tw');
     translate.use('tw');
   }
 
   test() {
+    console.log(this.multiply(2)(6));
     this.translate.use(this.currLang);
 
     console.log(this.translate.instant('HOME.WELCOME', { name: 'Allen' }));
