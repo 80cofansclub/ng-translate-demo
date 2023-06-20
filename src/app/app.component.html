@@ -4,5 +4,11 @@
 </select>
 
 <div>{{ 'HOME.TITLE' | translate }}</div>
-<div>{{ 'HOME.WELCOME' | translate : {name: 'Allen'} }}</div>
+<div>{{ 'HOME.WELCOME' | translate: { name: 'Allen' } }}</div>
+
+<div><button (click)="test2()">send Taxid</button></div>
+<div *ngFor="let i of businessData">
+  <span style="color: {{i.color}}">{{ i.ban }}</span>
+  <span>{{ i.businessNm }}</span>
+</div>
 <router-outlet></router-outlet>
