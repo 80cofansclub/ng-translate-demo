@@ -15,6 +15,7 @@ export class AppComponent {
   currLang = 'tw';
 
   businessData: any[] = [];
+  errBusinessData: any[] = [];
 
   multiply = (x) => {
     return (y) => {
@@ -42,12 +43,32 @@ export class AppComponent {
         .get(`https://eip.fia.gov.tw/OAI/api/businessRegistration/${taxid[i]}`)
         .subscribe(
           (r: any) => {
-            this.businessData.push({ ban: taxid[i], businessNm: r.businessNm, color: 'black' });
+            this.businessData.push({
+              ban: taxid[i],
+              businessNm: r.businessNm,
+              color: 'black',
+            });
           },
           (e) => {
-            this.businessData.push({ ban: taxid[i], businessNm: null, color: 'red' });
+            this.errBusinessData.push({
+              ban: taxid[i],
+              businessNm: null,
+              color: 'red',
+            });
           }
         );
+    }
+
+    for (let i = 0; i < this.errBusinessData.length; i++) {
+      this.http
+        .get(`https://eip.fia.gov.tw/OAI/api/schoolBanData/${taxid[i]}`)
+        .subscribe((r: any) => {
+          this.businessData.push({
+            ban: taxid[i],
+            businessNm: r.businessNm,
+            color: 'green',
+          });
+        });
     }
   }
 }
